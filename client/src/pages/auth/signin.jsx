@@ -1,7 +1,9 @@
 import React from 'react'
-
+import './signin.scss'
 export default function SignIn() {
     return (
-        <div>SIGN IN</div>
+        <div className='bg-primary'>
+            TEST
+        </div>
     )
 }
