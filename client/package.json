@@ -20,11 +20,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start & npm run watch:css",
-    "build": "BUILD_PATH='../server/build' react-scripts build & postcss src/styles/input.css -o src/styles/output.css",
+    "start": "react-scripts start",
+    "build": "BUILD_PATH='../server/build' react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "watch:css": "postcss -w src/styles/input.css -o src/styles/output.css"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
