@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Text from '../../component/inputs/text'
 import Button from '../../component/button'
 import { AuthContext } from '../../app/auth'
@@ -12,6 +12,10 @@ export default function SignUp() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const authContext = useContext(AuthContext)
+
+    useEffect(() => {
+        if(authContext.user) window.location = "/"
+    }, [authContext.user])
 
     const signUpUser = async () => {
         if(name.trim() === "") return Toast.fire({ icon: 'error', title: "Name required" })

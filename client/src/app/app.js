@@ -10,6 +10,7 @@ import NotFound from './../pages/error/404';
 
 // settings
 import Settings from './../settings'
+import SideNav from '../component/nav/sidenav';
 
 const routes = [
 
@@ -43,7 +44,9 @@ export default function App(){
                                     element={ 
                                         route.permission ? 
                                             <PrivateRoute permission={ route.permission }>
-                                                {route.view}
+                                                <SideNav>
+                                                    {route.view}
+                                                </SideNav>
                                             </PrivateRoute> 
                                             :
                                             route.view
