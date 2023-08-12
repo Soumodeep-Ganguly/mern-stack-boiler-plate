@@ -21,8 +21,9 @@
 
                 &:hover,
                 &.active {
-                    border-left-color: $c-primary;
-                    color: $c-primary;
+                    background-color: $c-primary;
+                    border-left-color: $c-dark;
+                    color: $c-dark;
                 }
             }
         }
@@ -76,8 +77,9 @@
 
                 &:hover,
                 &.active {
-                    border-left: 5px solid $c-dark;
-                    color: $c-dark;
+                    background-color: $c-dark;
+                    border-left: 5px solid $c-primary;
+                    color: $c-primary;
                 }
 
                 svg {

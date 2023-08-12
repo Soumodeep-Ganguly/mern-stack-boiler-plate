@@ -23,7 +23,6 @@ export function AuthProvider({ children }){
   
     async function signout(){
   
-      axios({ method: 'delete', url: '/api/auth' });
       localStorage.clear();
       return window.location = '/signin'
   

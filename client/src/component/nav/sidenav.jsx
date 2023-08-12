@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { UilTimes, UilBars, UilSun, UilMoon, UilSignOutAlt, UilCreateDashboard, UilInfoCircle, UilAt } from '@iconscout/react-unicons'
+import { AuthContext } from '../../app/auth'
+import { Link } from 'react-router-dom'
 import './sidenav.scss'
 
 export default function SideNav(props) {
     const [open, setOpen] = useState(false)
     const [dark, setDark] = useState(false)
+    const authContext = useContext(AuthContext)
 
     useEffect(() => {
         // Use window.innerWidth to get the current screen width
@@ -31,23 +34,23 @@ export default function SideNav(props) {
                 <nav className={`${open ? "open" : "closed"}`}>
                     <header>MERN Dev</header>
                     <div className='nav-wrapper'>
-                        <a href='/' className='active'>
+                        <Link to='/' className='active'>
                             <UilCreateDashboard />
                             <span className="nav-text">Dashboard</span>
-                        </a>
-                        <a href='/'>
+                        </Link>
+                        <Link to='/'>
                             <UilInfoCircle />
                             <span>About</span>
-                        </a>
-                        <a href='/'>
+                        </Link>
+                        <Link to='/'>
                             <UilAt />
                             <span>Contact</span>
-                        </a>
+                        </Link>
                     </div>
                     <div className='nav-action'>
                         {dark && <UilSun onClick={() => toggleDarkMode()} />}
                         {!dark && <UilMoon onClick={() => toggleDarkMode()} />}
-                        <UilSignOutAlt className="sign-off" />
+                        <UilSignOutAlt className="sign-off" onClick={() => authContext.signout()} />
                     </div>
                 </nav>
             </div>
