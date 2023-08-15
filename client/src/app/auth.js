@@ -9,6 +9,7 @@ export function AuthProvider({ children }){
 
     const cache = JSON.parse(localStorage.getItem('user'));
     const [user, setUser] = useState(cache);
+    const [dark, setDark] = useState(localStorage.getItem('darkMode'))
   
     function signin(res){
       if (res.data){
@@ -62,7 +63,7 @@ export function AuthProvider({ children }){
   
     return (
         <AuthContext.Provider value={{
-    
+                dark, setDark,
                 user: user,
                 signin: signin,
                 signout: signout,

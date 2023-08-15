@@ -8,6 +8,7 @@ import Toast from '../../component/toast'
 import './signin.scss'
 
 export default function SignIn() {
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const authContext = useContext(AuthContext)
@@ -20,10 +21,13 @@ export default function SignIn() {
         if(email.trim() === "") return Toast.fire({ icon: 'error', title: "Email required" })
         if(password === "") return Toast.fire({ icon: 'error', title: "Password required" })
 
+        setLoading(true)
         try {
             let res = await axios.post('/api/auth/signin', { email, password })
             authContext.signin(res)
+            setLoading(false)
         } catch (error) {
+            setLoading(false)
             Toast.fire({ icon: 'error', title: error?.response?.data?.error || "Unable to Sign-In" })
         }
     }
@@ -53,6 +57,7 @@ export default function SignIn() {
                 <Button 
                     variant="dark"
                     text="Login"
+                    loading={loading}
                     onClick={() => signInUser()}
                     style={{ marginTop: 30, marginBottom: 90 }}
                 />

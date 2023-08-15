@@ -1,0 +1,14 @@
+@import './../../styles/color.scss';
+
+.element-container {
+    margin: 0 20px;
+    & > div {
+        width: 90%;
+    }
+
+    @media screen and (min-width: 768px) {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+}

@@ -6,7 +6,6 @@ import './sidenav.scss'
 
 export default function SideNav(props) {
     const [open, setOpen] = useState(false)
-    const [dark, setDark] = useState(false)
     const authContext = useContext(AuthContext)
 
     useEffect(() => {
@@ -15,50 +14,49 @@ export default function SideNav(props) {
 
         // Set the initial state of open based on screen width
         setOpen(screenWidth >= 769);
-        setDark(localStorage.getItem('darkMode'))
     }, []);
 
     const toggleDarkMode = () => {
-        if(dark) { // turn off dark mode
+        if(authContext.dark) { // turn off dark mode
             localStorage.removeItem('darkMode')
-            setDark(false)
+            authContext.setDark(false)
         } else { // turn onn dark mode
             localStorage.setItem('darkMode', true)
-            setDark(true)
+            authContext.setDark(true)
         }
     }
 
     return (
         <div className='container'>
-            <div className={`sidenav-view ${open ? 'open' : ''} ${dark ? 'dark' : ''}`}>
+            <div className={`sidenav-view ${open ? 'open' : ''} ${authContext.dark ? 'dark' : ''}`}>
                 <nav className={`${open ? "open" : "closed"}`}>
                     <header>MERN Dev</header>
                     <div className='nav-wrapper'>
                         <Link to='/' className='active'>
-                            <UilCreateDashboard />
+                            <UilCreateDashboard style={{ marginTop: 20 }} />
                             <span className="nav-text">Dashboard</span>
                         </Link>
                         <Link to='/'>
-                            <UilInfoCircle />
+                            <UilInfoCircle style={{ marginTop: 20 }} />
                             <span>About</span>
                         </Link>
                         <Link to='/'>
-                            <UilAt />
+                            <UilAt style={{ marginTop: 20 }} />
                             <span>Contact</span>
                         </Link>
                     </div>
                     <div className='nav-action'>
-                        {dark && <UilSun onClick={() => toggleDarkMode()} />}
-                        {!dark && <UilMoon onClick={() => toggleDarkMode()} />}
+                        {authContext.dark && <UilSun onClick={() => toggleDarkMode()} />}
+                        {!authContext.dark && <UilMoon onClick={() => toggleDarkMode()} />}
                         <UilSignOutAlt className="sign-off" onClick={() => authContext.signout()} />
                     </div>
                 </nav>
             </div>
-            <div className={`sidenav-toggler ${dark ? 'dark' : ''}`}>
+            <div className={`sidenav-toggler ${authContext.dark ? 'dark' : ''}`}>
                 {!open && <UilBars size={14} className="on" onClick={() => setOpen(true)} />}
                 {open && <UilTimes size={18} className="off" onClick={() => setOpen(false)} />}
             </div>
-            <div className={`content-view ${open ? 'open' : ''} ${dark ? 'dark' : ''}`}>
+            <div className={`content-view ${open ? 'open' : ''} ${authContext.dark ? 'dark' : ''}`}>
                 {props.children}
             </div>
         </div>
