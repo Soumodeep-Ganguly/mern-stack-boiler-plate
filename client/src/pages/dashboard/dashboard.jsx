@@ -2,16 +2,63 @@ import React, { useState, useContext } from 'react'
 import { AuthContext } from '../../app/auth'
 import Text from './../../component/inputs/text'
 import Button from './../../component/button'
+import Switch from '../../component/switch'
+import SubNav from '../../component/subnav'
+import { UilHome, UilAt, UilInfoCircle } from '@iconscout/react-unicons'
 import './dashboard.scss'
 
 export default function Dashboard() {
+    const [selectedTab, setSelectedTab] = useState("Home")
     const [text, setText] = useState("")
     const [numberField, setNumberField] = useState("")
+    const [switchOne, setSwitchOne] = useState(false)
+    const [switchTwo, setSwitchTwo] = useState(true)
     const authContext = useContext(AuthContext)
 
     return (
         <div>
             <h1 className='page-title'>Dashboard</h1>
+            <div style={{ marginLeft: 20, marginTop: 20, marginRight: 20 }}>
+                <SubNav 
+                    selected={selectedTab}
+                    onChange={(item) => setSelectedTab(item.title)}
+                    menuItems={[
+                        {
+                            icon: <UilHome />,
+                            title: 'Home',
+                        },
+                        {
+                            icon: <UilInfoCircle />,
+                            title: 'About',
+                        },
+                        {
+                            icon: <UilAt />,
+                            title: 'Contact',
+                        }
+                    ]}
+                />
+            </div>
+            <div style={{ marginLeft: 20, marginTop: 20 }}>
+                <SubNav 
+                    type="fit"
+                    selected={selectedTab}
+                    onChange={(item) => setSelectedTab(item.title)}
+                    menuItems={[
+                        {
+                            icon: <UilHome />,
+                            title: 'Home',
+                        },
+                        {
+                            icon: <UilInfoCircle />,
+                            title: 'About',
+                        },
+                        {
+                            icon: <UilAt />,
+                            title: 'Contact',
+                        }
+                    ]}
+                />
+            </div>
             <div className="element-container">
                 <div>
                     <Text
@@ -50,6 +97,31 @@ export default function Dashboard() {
                         onClick={() => console.log("PRIMARY")}
                         style={{ marginTop: 15 }}
                     />
+                </div>
+                <div>
+                    <div style={{ display: 'flex', marginTop: 15 }}>
+                        <Switch 
+                            checked={switchOne}
+                            onChange={setSwitchOne}
+                        />
+                        <Switch 
+                            checked={switchTwo}
+                            onChange={setSwitchTwo}
+                            style={{ marginLeft: 20 }}
+                        />
+                        <Switch 
+                            variant="dark"
+                            checked={switchTwo}
+                            onChange={setSwitchTwo}
+                            style={{ marginLeft: 20 }}
+                        />
+                        <Switch 
+                            variant="primary"
+                            checked={switchTwo}
+                            onChange={setSwitchTwo}
+                            style={{ marginLeft: 20 }}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
