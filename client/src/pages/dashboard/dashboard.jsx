@@ -4,6 +4,7 @@ import Text from './../../component/inputs/text'
 import Button from './../../component/button'
 import Switch from '../../component/switch'
 import SubNav from '../../component/subnav'
+import Modal from '../../component/modal';
 import { UilHome, UilAt, UilInfoCircle } from '@iconscout/react-unicons'
 import './dashboard.scss'
 
@@ -13,6 +14,7 @@ export default function Dashboard() {
     const [numberField, setNumberField] = useState("")
     const [switchOne, setSwitchOne] = useState(false)
     const [switchTwo, setSwitchTwo] = useState(true)
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const authContext = useContext(AuthContext)
 
     return (
@@ -122,6 +124,17 @@ export default function Dashboard() {
                             style={{ marginLeft: 20 }}
                         />
                     </div>
+                </div>
+                <div>
+                    <Button 
+                        variant="primary"
+                        text="Open Modal"
+                        onClick={() => setIsModalOpen(true)}
+                        style={{ marginTop: 15 }}
+                    />
+                    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title={`Modal Title`}>
+                        <p>Modal data</p>
+                    </Modal>
                 </div>
             </div>
         </div>
