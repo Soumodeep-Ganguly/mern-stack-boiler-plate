@@ -1,5 +1,7 @@
 # MERN Stack Boiler Plate
 
+### Using Node v18.16.1
+
 ## First Steps
 
 Install `node_modules` using by moving into `server` and `client` folders simultaniously and run command `npm i` or `npm install` in both folders.
